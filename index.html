@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Desafio - Challengerio</title>
+        <script src="https://kit.fontawesome.com/6d4b9a93a2.js" crossorigin="anonymous"></script>
+
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+    <body>
+        
+        <section class="todo">
+            <div class="top-bar">
+                <h1>Todolist</h1>
+                <nav>
+                    <p onclick="DOM.toggle(this)" class="all activeLink">All</p>
+                    <p onclick="DOM.toggle(this)" class="active">Active</p>
+                    <p onclick="DOM.toggle(this)" class="completed">Completed</p>
+                </nav>
+            </div>
+
+            <div class="input-group">
+                <input id="input" type="text" placeholder="Press Enter for add one Task" onkeydown="Todo.keyPress(event)">
+                <button onclick="Todo.getValue()">Add</button>
+            </div>
+
+
+            <div class="all" id="displayAll"></div>
+            <div class="active" id="displayActive"></div>
+            <div class="completed" id="displayCompleted"></div>
+
+        </section>
+
+        <script src="index.js"></script>
+    </body>
+</html>

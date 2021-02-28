@@ -1,0 +1,218 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    background: #242323;
+}
+
+section.todo {
+    width: 600px;
+    height: 100%;
+
+    margin: 0 auto;
+    font-family: sans-serif;    
+}
+
+div.top-bar {
+    width: 100%;
+    height: 150px;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column; 
+
+    color: #f5f5f5;
+}
+
+div.top-bar h1 {
+    font-size: 40px;
+    padding-top: 20px;
+}
+
+div.top-bar nav {
+    display: flex;
+    align-items: center;
+    margin-top: 25px;
+}
+
+div.top-bar nav p {
+    margin-right: 50px;
+    cursor: pointer;
+}
+
+div.top-bar nav p.activeLink {
+    color: red;
+}
+
+.input-group {
+    width: 300px;
+
+    margin: 0 auto;
+    padding-bottom: 30px;
+}
+
+.input-group input {
+    width: 200px;
+    height: 30px;
+    padding-left: 8px;
+}
+
+.input-group button {
+    width: 50px;
+    height: 30px;
+
+    border-radius: 5px;
+    border: 1px solid lightslategray;
+    background: lightseagreen;
+    color: #fff;
+
+    cursor: pointer;
+}
+
+div.all, div.active, div.completed {
+    width: 500px;
+    min-height: 300px;
+    margin-top: 30px auto;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    border: 1px solid #f5f5f5;
+}
+
+div.all {
+    background: lightgray;
+}
+
+div.all.activeLink,
+div.active.activeLink,
+div.completed.activeLink {
+    display: flex;
+}
+
+div.active {
+    background: lightcoral;
+}
+
+div.completed {
+    background: lightgreen;
+}
+
+div.active, div.completed {
+    display: none;
+}
+
+div.task {
+    width: 400px;
+    height: 40px;
+
+    background: #fff;
+    color: #000;
+    margin-bottom: 20px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+div.task i {
+    padding-right: 10px;
+    cursor: pointer;
+    color: red;
+}
+
+div.task-content {
+    display: flex;
+    align-items: center;
+}
+
+div.task-content input {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+div.task-content p {
+    padding-left: 10px;
+}
+
+div.check {
+    width: 40px;
+    height: 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div.check-ball {
+    width: 20px;
+    height: 20px;
+
+    background: rgb(100,0, 200);
+    border-radius: 50px;
+    position: relative;
+}
+
+div.ball-check {
+    width: 11px;
+    height: 11px;
+
+    background: #9a93a0;
+    border-radius: 50px;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    cursor: pointer;
+}
+
+div.ball-check.active-check {
+    background: #e7d677;
+}
+
+div.task-content hr {
+    width: calc(100% - 70px);
+    height: 1px;
+
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    background: rgb(100,0, 200);
+    border: none;
+
+    display: none;
+    
+    animation-name: animate-hr;
+    animation-duration: .2s;
+}
+
+div.task-content hr.active {
+    display: flex;
+}
+
+@keyframes animate-hr {
+    0% {
+        opacity: 0;
+        transform-origin: left;
+        transform: scale(0.1);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(-50%) scale(1);
+    }
+}
