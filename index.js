@@ -1,19 +1,3 @@
-// METODOS QUE A APLICAÇÃO POSSIVELMENTE VAI TER QUE TER 
-// 1º init; 2º addTarefa; 3º RemoveTarefa; 4º checkTarefa
-
-// 1º para armazenar todas as tarefas
-// preciso adicionar um index para cada tarefa
-
-// 2º para armazenar todas as tarefas que ainda nao foram dado check
-
-// 3º para armazenar as tarefas concluidas
-
-// quando adicionarmos uma tarefas, adicionaremos uma div com asinformações da tarefa em 2 arrays, all e active
-
-// quando uma tarefa for excluida ela vai ser retirada de todos os array
-
-// quando uma tarefa for concluida ela tem que sair do active e ir pro complete
-
 const App = {
     init() {
 
@@ -43,10 +27,6 @@ const DOM = {
     },
 
     innerHTMLDisplay(divTask1, divTask2) {
-        // nao é possivel enviar a mesma div para ambos display uma opção é criar uma fucntion
-        // que percorre o array do active e cria novas divs, ou tentar clonar essa div que esta 
-        // entrando na function
-
        displayAll.append(divTask1);
        displayActive.append(divTask2);
     },
@@ -191,28 +171,7 @@ const Todo = {
         hr.classList.toggle("active");
 
         console.log(descriptionTask);
-
-        // to pensando em ja adicionar em todos os arrays, porém na div completed 
-        // as div estaram em display: none; e quando dar o check vai verificar o index
-        // e pegar a div do index no array e dar o display: flex;
     }
 }
 
 App.init();
-
-// removeTaskTheActive() {
-    // var dar um forEach no Array all e verificar a classe de cada item
-    // e ver se tem a class check se sim ele vai remover do active e adicionar a classe do risquinho e adicionar ao array completed e dar return
-
-    // se nao tiver a classe check remover a task de todos os arrays
-    // e atualizar o html
-// },
-
-// checkTask() {
-    // vai pegar a div e verificar qual é o index da div
-    // e adicionar a class check do risquinho
-    // e verificar em qual pocisão ela esta nos arrays
-    // remover dos arrays e adicionar a tarefa no array completed
-    // e atualizar o HTML
-// }
-
