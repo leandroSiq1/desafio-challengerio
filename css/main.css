@@ -1,0 +1,236 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+:root {
+  --background-primary: #121214;
+  --background-secoundary: #202024;
+  --color-light: #29292e;
+  --color-green: #04d361;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 2px;
+  background: var(--color-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-green)
+}
+
+section.todolist {
+  max-width: 100%;
+
+  background: var(--background-primary);
+  font-family: 'Arial', sans-serif;
+  color: #fff;
+}
+
+div.top-bar {
+  width: 100%;
+  height: 230px;
+
+  background: var(--background-secoundary);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+div.top-bar h1 {
+  font-size: 35px;
+  padding: 30px 0 30px 0;
+}
+
+div.top-bar nav {
+  width: 300px; 
+
+  padding-bottom: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+div.top-bar nav button {
+  background: none;
+  border: none;
+  outline: none;
+
+  font-size: 18px;
+
+  color: #fff;
+
+  cursor: pointer;
+}
+
+div.top-bar nav button.active {
+  color: var(--color-green);
+}
+
+div.top-bar div.input-task {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+div.top-bar div.input-task input {
+  width: 300px;
+  height: 35px;
+
+  padding-left: 8px;
+  font-size: 17px;
+
+  border: none;
+  box-shadow: 0 0 30px #3e3e46;
+}
+
+div.top-bar div.input-task button {
+  width: 50px;
+  height: 35px;
+
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+
+  background: var(--color-light);
+  border: none;
+
+  box-shadow: 0 0 10px #3e3e46;
+
+  transition: .2s;
+  cursor: pointer;
+}
+
+div.top-bar div.input-task button:hover {
+  background: #3e3e46;
+}
+
+div.displayAll {
+  width: 700px;
+  height: 400px;
+
+  margin: 0 auto;
+  padding: 0 10px 30px 10px;
+  /* background: lightcoral; */
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+div.displayActive {
+  width: 700px;
+  height: 400px;
+
+  margin: 0 auto;
+  padding: 0 10px 30px 10px;
+  /* background: lightblue; */
+
+  display: none;
+  flex-direction: column;
+  align-items: center;
+}
+
+div.displayCompleted {
+  width: 700px;
+  height: 400px;
+
+  margin: 0 auto;
+  padding: 0 10px 30px 10px;
+  /* background: lightgreen; */
+
+  display: none;
+  flex-direction: column;
+  align-items: center;
+}
+
+div.task {
+  width: 470px;
+  min-height: 40px;
+
+  margin-top: 40px;
+
+  background: var(--background-secoundary);
+  box-shadow: 0 0 15px #3e3e46;
+  border-radius: 5px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+div.task.active {
+  border-bottom: 2px solid var(--color-green);
+  transition: .2s;
+  transform-origin: left;
+}
+
+div.check {
+  width: 50px;
+  height: 100%;
+
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+div.box-check {
+  width: 20px;
+  height: 20px;
+
+  background: var(--background-primary);
+  border-radius: 50px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+div.circle-check {
+  width: 10px;
+  height: 10px;
+
+  background: var(--color-light);
+  border-radius: 50px;
+}
+
+div.check.active div.circle-check {
+  background: var(--color-green);
+}
+
+div.content-task {
+  width: calc(100% - 50px);
+
+  text-align: left;
+  padding-left: 8px;
+  overflow: hidden;
+}
+
+div.icon-remove {
+  width: 50px;
+  height: 100%;
+
+  background: var(--color-light);
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  color: var(--color-green);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
