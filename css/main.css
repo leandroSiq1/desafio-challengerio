@@ -6,6 +6,7 @@
 
 html, body {
   height: 100%;
+  background: var(--background-primary);
 }
 
 :root {
@@ -87,9 +88,11 @@ div.top-bar div.input-task input {
 
   padding-left: 8px;
   font-size: 17px;
+  color: #fff;
 
-  border: none;
+  background: var(--background-primary);
   box-shadow: 0 0 30px #3e3e46;
+  border: none;
 }
 
 div.top-bar div.input-task button {
@@ -145,7 +148,6 @@ div.displayCompleted {
 
   margin: 0 auto;
   padding: 0 10px 30px 10px;
-  /* background: lightgreen; */
 
   display: none;
   flex-direction: column;
@@ -165,6 +167,9 @@ div.task {
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  animation-name: animate-task;
+  animation-duration: .2s;
 }
 
 div.task.active {
@@ -233,4 +238,92 @@ div.icon-remove {
   justify-content: center;
 
   cursor: pointer;
+}
+
+.bubbles-left {
+  width: 500px;
+  float: left;
+}
+
+.bubbles-right {
+  width: 500px;
+  float: right;
+}
+
+.bubbles-left img:nth-child(1),
+.bubbles-right img:nth-child(1) {
+  width: 30px;
+  animation-delay: 2s;
+}
+
+.bubbles-left img,
+.bubbles-right img {
+  width: 50px;
+  animation: animate-bubble 7s linear infinite;
+  opacity: 0;
+}
+
+.bubbles-left img:nth-child(2),
+.bubbles-right img:nth-child(2) {
+  animation-delay: 1s;
+}
+.bubbles-left img:nth-child(3),
+.bubbles-right img:nth-child(3) {
+  animation-delay: 3s;
+  width:50px;
+}
+.bubbles-left img:nth-child(4),
+.bubbles-right img:nth-child(4) {
+  animation-delay: 5s;
+}
+.bubbles-left img:nth-child(5),
+.bubbles-right img:nth-child(5) {
+  animation-delay: 4.5s;
+}
+.bubbles-left img:nth-child(6),
+.bubbles-right img:nth-child(6) {
+  width:70px;
+  animation-delay: 7s;
+}
+.bubbles-left img:nth-child(7),
+.bubbles-right img:nth-child(7) {
+  width: 25px;
+  animation-delay: 6s;
+}
+
+@keyframes animate-bubble {
+  0%{
+    transform: translateY(0);
+
+    opacity: 0;
+  }
+  50%{
+    opacity: 1;
+    margin-left: 60px;
+  }
+
+  60% {
+    margin-left: 30px;
+  }
+
+  70%{
+    opacity: 1;
+    margin-left: 0;
+  }
+  100%{
+    transform: translateY(-70vh);
+    opacity: 0;
+  }
+}
+
+@keyframes animate-task {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }

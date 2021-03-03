@@ -11,7 +11,7 @@ const Todo = {
   keyPress(event) {
 
     if (event.key === "Enter") {
-      Todo.getValue();
+      this.getValue();
     }
 
     return;
@@ -23,19 +23,19 @@ const Todo = {
     value = input.value;
     input.value = "";
 
-    All.push({ description: value })
-    Active.push({ description: value })
+    All.push({ description: value, state: "", display: "flex" });
+    Active.push({ description: value, state: "", display: "flex" });
 
     App.init();
   },
 
-  createTask(textTask, index) {
+  createTask(textTask, index, state, display) {
     const div = document.createElement("div");
     const divActive = document.createElement("div");
     const divCompleted = document.createElement("div");
 
     const HTML = `
-    <div class="check">
+    <div class="check ${state}">
       <div onclick="Todo.check(this)" class="box-check">
         <div class="circle-check"></div>
       </div>
@@ -50,13 +50,14 @@ const Todo = {
     </div>
   `
 
-    div.classList = "task";
+    div.classList = `task ${(true ? state : "" )}`;
     div.dataset.index = index;
     div.innerHTML = HTML;
 
-    divActive.classList = "task";
+    divActive.classList = `task ${(true ? state : "" )}`;
     divActive.dataset.index = index;
     divActive.innerHTML = HTML;
+    divActive.style.display = display;
 
     displayAll.appendChild(div);
     displayActive.appendChild(divActive);
@@ -82,9 +83,7 @@ const Todo = {
       task.classList = "task";
     }
 
-    console.log(task.childNodes[1].classList.length);
-
-    // console.log("checar a Task");
+    this.validateCheck(task);
   },
 
   validateLink(element) {
@@ -114,6 +113,36 @@ const Todo = {
       displayAll.style.display = "none";
       displayActive.style.display = "none";
     }
+  },
+
+  validateCheck(element) {
+    index = element.dataset.index;
+    boxActive = displayActive.childNodes;
+    
+    boxActive.forEach((task) => {
+      if (task.dataset.index === index && task.classList.length === 1) {
+        task.style.display = "none";
+        task.classList.add(".");
+
+        Active[index].state = "active";
+        Active[index].display = "none";
+        
+        All[index].state = "active";
+        All[index].display = "none";
+        
+        return;
+      }
+
+      if (task.dataset.index === index && task.classList.length === 2) {
+        task.style.display = "flex";
+        task.classList.remove(".");
+        task.classList.remove("active");
+        task.childNodes[1].classList.remove("active");
+        
+        Active[index].display = "flex";
+        All[index].state = "";
+      }
+    });
   }
 }
 
@@ -123,12 +152,10 @@ const App = {
     displayAll.innerHTML = "";
     displayActive.innerHTML = "";
 
-    // e criar as task na div all e active
     All.forEach((element, index) => {
-      Todo.createTask(element.description, index);
+      Todo.createTask(element.description, index, element.state, element.display);
     });
 
-    // console.log(All);
   },
 
   reload() {
