@@ -9,11 +9,9 @@ const Completed = [];
 const Todo = {
   
   keyPress(event) {
-
     if (event.key === "Enter") {
       this.getValue();
     }
-
     return;
   },
 
@@ -23,8 +21,13 @@ const Todo = {
     value = input.value;
     input.value = "";
 
-    All.push({ description: value, state: "", display: "flex" });
-    Active.push({ description: value, state: "", display: "flex" });
+    if (value === "") {
+      return;
+    } else {
+      All.push({ description: value, state: "", display: "flex" });
+      Active.push({ description: value, state: "", display: "flex" });
+      Completed.push({ description: value, state: "", display: "none" });
+    }
 
     App.init();
   },
@@ -32,7 +35,6 @@ const Todo = {
   createTask(textTask, index, state, display) {
     const div = document.createElement("div");
     const divActive = document.createElement("div");
-    const divCompleted = document.createElement("div");
 
     const HTML = `
     <div class="check ${state}">
@@ -60,7 +62,34 @@ const Todo = {
     divActive.style.display = display;
 
     displayAll.appendChild(div);
-    displayActive.appendChild(divActive);
+    displayActive.appendChild(divActive);  
+  },
+
+  createTaskCompleted(textTask, index, state, display) {
+    const divCompleted = document.createElement("div");
+    
+    const HTML = `
+      <div class="check active">
+        <div class="box-check" style="cursor: no-drop;">
+          <div class="circle-check"></div>
+        </div>
+      </div>
+
+      <div class="content-task">
+        <p>${textTask}</p>       
+      </div>
+
+      <div onclick="Todo.remove(this)" class="icon-remove">
+        <i class="far fa-trash-alt"></i>
+      </div>
+    `
+
+    divCompleted.classList = `task active`;
+    divCompleted.dataset.index = index;
+    divCompleted.innerHTML = HTML;
+    divCompleted.style.display = display;
+
+    displayCompleted.appendChild(divCompleted);
   },
 
   remove(element) {
@@ -68,6 +97,7 @@ const Todo = {
 
     All.splice(index, 1);
     Active.splice(index, 1);
+    Completed.splice(index, 1);
 
     App.reload();
   },
@@ -127,6 +157,8 @@ const Todo = {
         Active[index].state = "active";
         Active[index].display = "none";
         
+        displayCompleted.children[index].style.display = "flex";
+
         All[index].state = "active";
         All[index].display = "none";
         
@@ -140,8 +172,10 @@ const Todo = {
         task.childNodes[1].classList.remove("active");
         
         Active[index].display = "flex";
+        displayCompleted.children[index].style.display = "none";
         All[index].state = "";
       }
+
     });
   }
 }
@@ -151,11 +185,15 @@ const App = {
   init() {
     displayAll.innerHTML = "";
     displayActive.innerHTML = "";
+    displayCompleted.innerHTML = "";
 
     All.forEach((element, index) => {
       Todo.createTask(element.description, index, element.state, element.display);
     });
 
+    Completed.forEach((element, index) => {
+      Todo.createTaskCompleted(element.description, index, element.state, element.display);
+    });
   },
 
   reload() {
